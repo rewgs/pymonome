@@ -1,26 +1,37 @@
+from .grid import Grid
+from .page import GridPage
+
+
 class GridApp:
-    def __init__(self, grid=None):
+    def __init__(self, grid: Grid | None = None):
         if grid is None:
             grid = Grid()
 
         self.set_grid(grid)
 
-    def set_grid(self, grid):
+    def set_grid(self, grid: Grid):
+        """set_grid assigns the GridApp to a Grid and initializes it with several handlers."""
+
         self.grid = grid
         self.grid.ready_event.add_handler(self.on_grid_ready)
         self.grid.disconnect_event.add_handler(self.on_grid_disconnect)
         self.grid.key_event.add_handler(self.on_grid_key)
         self.grid.tilt_event.add_handler(self.on_tilt)
 
+    # NOTE: Considering the examples are (re)defining this method, it seems like
+    # maybe GridApp should be an ABC and this method should be an abstractmethod.
     def on_grid_ready(self):
         pass
 
+    # NOTE: Ditto ^
     def on_grid_disconnect(self):
         pass
 
+    # NOTE: Ditto ^ (again)
     def on_grid_key(self, x, y, s):
         pass
 
+    # NOTE: Ditto ^ (cubed)
     def on_tilt(self, n, x, y, z):
         pass
 

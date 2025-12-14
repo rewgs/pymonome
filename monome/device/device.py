@@ -7,14 +7,18 @@ from .event import Event
 
 
 class Device(aiosc.OSCProtocol):
+    """
+    Device forms the base class for monome devices such as Arc and Grid.
+    """
+
     def __init__(self):
         super().__init__()
 
         self.add_handler("/sys/disconnect", self._on_sys_disconnect)
         self.add_handler("/sys/{id,size,host,port,prefix,rotation}", self._on_sys_info)
 
-        self.connected = False
-        self.transport = None
+        self.connected: bool = False
+        self.transport: None = None
 
         self.prefix = "monome"
 

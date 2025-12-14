@@ -24,9 +24,10 @@ class Grid(Device):
         self.add_handler("/*/grid/key", self._on_grid_key)
         self.add_handler("/*/tilt", self._on_tilt)
 
-        self.key_event = Event()
-        self.tilt_event = Event()
-        self.varibright = True
+        self.key_event: Event = Event()
+        self.tilt_event: Event = Event()
+
+        self.varibright: bool = True
 
         self.ready_event.add_handler(self._set_varibright)
 

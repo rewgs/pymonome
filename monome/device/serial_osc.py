@@ -1,5 +1,6 @@
 import asyncio
 import sys
+from typing import Callable
 
 import aiosc
 
@@ -8,13 +9,14 @@ from .event import Event
 
 class SerialOsc(aiosc.OSCProtocol):
     def __init__(self, loop=None, autoconnect_app=None):
-        super().__init__(
-            handlers={
-                "/serialosc/device": self._on_serialosc_device,
-                "/serialosc/add": self._on_serialosc_add,
-                "/serialosc/remove": self._on_serialosc_remove,
-            }
-        )
+        # TODO: Add parameter and return type hints to Callable type hint (e.g. Callable[[str, str]bool] for a function that takes two strings and returns a bool)
+        handlers: dict[str, Callable] = {
+            "/serialosc/device": self._on_serialosc_device,
+            "/serialosc/add": self._on_serialosc_add,
+            "/serialosc/remove": self._on_serialosc_remove,
+        }
+
+        super().__init__(handlers)
 
         self.device_added_event = Event()
         self.device_removed_event = Event()

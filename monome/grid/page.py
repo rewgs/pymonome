@@ -1,12 +1,15 @@
+from .device import Event
+
+
 class GridPage:
     def __init__(self, manager):
         self.manager = manager
         self.buffer = None
 
-        self.ready_event = Event()
-        self.disconnect_event = Event()
-        self.key_event = Event()
-        self.tilt_event = Event()
+        self.ready_event: Event = Event()
+        self.disconnect_event: Event = Event()
+        self.key_event: Event = Event()
+        self.tilt_event: Event = Event()
 
     def manager_ready(self):
         self.id = "grid_page"
