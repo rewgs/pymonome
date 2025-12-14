@@ -1,6 +1,9 @@
+from .device import Device, Event
+
+
 class Arc(Device):
-    def __init__(self, prefix="monome"):
-        super().__init__(prefix)
+    def __init__(self):
+        super().__init__()
 
         self.add_handler("/*/enc/delta", self._on_enc_delta)
         self.add_handler("/*/enc/key", self._on_enc_key)

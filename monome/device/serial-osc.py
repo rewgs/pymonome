@@ -1,3 +1,11 @@
+import asyncio
+import sys
+
+import aiosc
+
+from .event import Event
+
+
 class SerialOsc(aiosc.OSCProtocol):
     def __init__(self, loop=None, autoconnect_app=None):
         super().__init__(

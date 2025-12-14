@@ -1,3 +1,9 @@
+import itertools
+import re
+
+from .device import Device, Event
+
+
 def pack_row(row):
     return (
         row[7] << 7
@@ -12,8 +18,8 @@ def pack_row(row):
 
 
 class Grid(Device):
-    def __init__(self, prefix="monome"):
-        super().__init__(prefix)
+    def __init__(self):
+        super().__init__()
 
         self.add_handler("/*/grid/key", self._on_grid_key)
         self.add_handler("/*/tilt", self._on_tilt)

@@ -7,7 +7,7 @@ from .event import Event
 
 
 class Device(aiosc.OSCProtocol):
-    def __init__(self, prefix="monome"):
+    def __init__(self):
         super().__init__()
 
         self.add_handler("/sys/disconnect", self._on_sys_disconnect)
@@ -16,7 +16,7 @@ class Device(aiosc.OSCProtocol):
         self.connected = False
         self.transport = None
 
-        self.prefix = prefix
+        self.prefix = "monome"
 
         self.ready_event = Event()
         self.disconnect_event = Event()
@@ -77,5 +77,5 @@ class Device(aiosc.OSCProtocol):
     def disconnect(self):
         self.disconnect_event.dispatch()
         self._reset_info_properties()
-        self.transport.close()
+        self.transport.close()  # FIXME: Close is not an attribute
         self.connected = False
