@@ -20,5 +20,6 @@
 # THE SOFTWARE.
 
 from .arc import ArcApp
+from .grid import GridApp
 
-__all__ = ["ArcApp"]
+__all__ = ["ArcApp", "GridApp"]
