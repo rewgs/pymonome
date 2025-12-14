@@ -1,3 +1,6 @@
+from .arc import Arc
+
+
 class ArcApp:
     def __init__(self, arc=None):
         if arc is None:
