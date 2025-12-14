@@ -1,9 +1,6 @@
 # pymonome
 
-pymonome is a pure Python library for easy interaction with the
-`monome family <https://monome.org>` of devices. It supports grid and arc
-controllers (via serialosc) and provides additional facilities for developing
-grid- and arc-based applications.
+pymonome is a pure Python library for easy interaction with the `monome family <https://monome.org>` of devices. It supports grid and arc controllers (via serialosc) and provides additional facilities for developing grid- and arc-based applications.
 
 ## Installation
 
@@ -13,8 +10,7 @@ pymonome requires at least Python 3.6. It can be installed using pip:
 pip3 install pymonome
 ```
 
-Or use the `--user` option to install pymonome to the current user
-library directory::
+Or use the `--user` option to install pymonome to the current user library directory::
 
 ```bash
 pip3 install --user pymonome
@@ -22,11 +18,7 @@ pip3 install --user pymonome
 
 ## Basic usage
 
-pymonome does not communicate with any of the devices directly. Like many
-monome applications, it relies on serialosc for device detection and hardware
-input and output. As serialosc provides OSC (UDP) ports for all the devices
-connected to the host system, it is possible to connect to a grid via a known
-UDP port as follows:
+pymonome does not communicate with any of the devices directly. Like many monome applications, it relies on serialosc for device detection and hardware input and output. As serialosc provides OSC (UDP) ports for all the devices connected to the host system, it is possible to connect to a grid via a known UDP port as follows:
 
 ```python
 import monome
@@ -39,20 +31,15 @@ await grid.connect(GRID_HOST, GRID_PORT)
 grid.led_set(0, 0, 1)
 ```
 
-Alternatively, it is possible to instantiate the protocol class using the
-`loop.create_datagram_endpoint()` event loop method:
+Alternatively, it is possible to instantiate the protocol class using the `loop.create_datagram_endpoint()` event loop method:
 
 ```python
-
 transport, grid = await loop.create_datagram_endpoint(monome.Grid, remote_addr=(GRID_HOST, GRID_PORT))
 ```
 
 ## Service discovery API
 
-In practice UDP ports will be randomly assigned to devices as they
-are connected to the host computer. serialosc has a discovery and
-notification mechanism to notify clients about connected devices.
-It's possible to connect to the discovery service from pymonome too:
+In practice UDP ports will be randomly assigned to devices as they are connected to the host computer. serialosc has a discovery and notification mechanism to notify clients about connected devices. It's possible to connect to the discovery service from pymonome too:
 
 ```python
 grid = monome.Grid()
@@ -69,10 +56,7 @@ await serialosc.connect()
 
 ## Application classes
 
-For extra convenience pymonome provides base classes for developing
-grid and arc-based apps, apps on grid sections, or pages on the same grid.
-Application base classes provide handler stubs for input events
-and member properties for accessing controllers.
+For extra convenience pymonome provides base classes for developing grid and arc-based apps, apps on grid sections, or pages on the same grid. Application base classes provide handler stubs for input events and member properties for accessing controllers.
 
 ```python
 import asyncio
@@ -100,9 +84,7 @@ if __name__ == '__main__':
     asyncio.run(main())
 ```
 
-In this example, HelloApp application instance will be connected
-to the latest discovered grid and pressing a button will light
-the corresponding LED.
+In this example, HelloApp application instance will be connected to the latest discovered grid and pressing a button will light the corresponding LED.
 
 ## More examples
 
