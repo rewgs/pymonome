@@ -1,4 +1,5 @@
-from .device import Event
+from .buffer import GridBuffer
+from .event import Event
 
 
 class GridPage:

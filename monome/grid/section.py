@@ -1,3 +1,6 @@
+from .event import Event
+
+
 class GridSection:
     def __init__(self, size, offset):
         self.splitter = None

@@ -1,7 +1,8 @@
 import itertools
 import re
 
-from .device import Device, Event
+from .device import Device
+from .event import Event
 
 
 def pack_row(row):
